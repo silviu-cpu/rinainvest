@@ -1,0 +1,232 @@
+:host {
+  display: block;
+}
+
+.hero {
+  padding: 160px 0 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero__inner {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: 56px;
+  align-items: center;
+}
+
+// ── Copy ───────────────────────────────────────────────────────────────────
+
+.hero__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  min-width: 0; // prevents grid blowout from ticker max-content
+}
+
+.hero__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+
+.hero__pulse {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: inline-block;
+  animation: pulse 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.7); }
+}
+
+.hero__title {
+  font-size: clamp(40px, 5.5vw, 88px);
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  margin: 0;
+
+  em {
+    font-style: italic;
+    color: var(--accent);
+  }
+}
+
+.hero__lead {
+  font-size: clamp(15px, 1.1vw, 17px);
+  line-height: 1.6;
+  color: var(--fg-soft);
+  max-width: 52ch;
+}
+
+.hero__cta-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+// ── Ticker ─────────────────────────────────────────────────────────────────
+
+.hero__ticker {
+  overflow: hidden;
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+  margin-top: 4px;
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero__ticker-track {
+      animation: none;
+    }
+  }
+}
+
+.hero__ticker-track {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: max-content;
+  animation: ticker-scroll 18s linear infinite;
+}
+
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.hero__ticker-track span.mono {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg-mute);
+  white-space: nowrap;
+}
+
+.hero__ticker-dot {
+  color: var(--accent);
+  font-size: 8px;
+  transform: rotate(45deg);
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+// ── Stage ──────────────────────────────────────────────────────────────────
+
+.hero__stage {
+  position: relative;
+  min-width: 0; // prevents grid blowout
+  height: clamp(440px, 55vw, 640px);
+  border-radius: 24px;
+  border: 1px solid var(--line);
+  overflow: hidden;
+  background: radial-gradient(ellipse at 50% 60%, var(--bg-3) 0%, var(--bg-1) 70%, var(--bg) 100%);
+}
+
+.hero__canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.hero__chrome {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hero__corner {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: var(--line-strong);
+  border-style: solid;
+
+  &--tl { top: 12px; left: 12px; border-width: 1px 0 0 1px; }
+  &--tr { top: 12px; right: 12px; border-width: 1px 1px 0 0; }
+  &--bl { bottom: 12px; left: 12px; border-width: 0 0 1px 1px; }
+  &--br { bottom: 12px; right: 12px; border-width: 0 1px 1px 0; }
+}
+
+.hero__badge {
+  position: absolute;
+  top: 14px;
+  right: 28px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 100px;
+  padding: 5px 12px;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--fg-soft);
+}
+
+.hero__hint {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--fg-dim);
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
+.hero__loader {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-1);
+  border-radius: 24px;
+
+  span {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--fg-mute);
+  }
+}
+
+// ── Responsive ─────────────────────────────────────────────────────────────
+
+@media (max-width: 860px) {
+  .hero__inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .hero__stage {
+    height: clamp(300px, 60vw, 480px);
+  }
+
+  .hero__copy {
+    order: 1;
+  }
+
+  .hero__stage {
+    order: 2;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 120px 0 60px;
+  }
+
+  .hero__title {
+    font-size: clamp(36px, 10vw, 56px);
+  }
+}

@@ -1,0 +1,46 @@
+<section class="services section" id="services">
+  <div class="shell">
+    <div class="services__head" appReveal>
+      <p class="kicker">{{ i18n.t().services.kicker }}</p>
+      <h2 class="services__title display">
+        @for (line of i18n.t().services.title.split('\n'); track line) {
+          {{ line }}<br>
+        }
+      </h2>
+    </div>
+
+    <!-- Group 1: Închiriere -->
+    <div class="services__group" appReveal>
+      <p class="services__group-label kicker">
+        <span class="services__group-dash" aria-hidden="true"></span>
+        {{ i18n.t().services.rentLabel }}
+      </p>
+      <div class="services__grid" role="list">
+        @for (item of i18n.t().services.items.slice(0, 3); track item.n) {
+          <div class="services__card" role="listitem">
+            <span class="services__n mono">{{ item.n }}</span>
+            <h3 class="services__card-title display">{{ item.title }}</h3>
+            <p class="services__card-desc">{{ item.desc }}</p>
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Group 2: Vânzare -->
+    <div class="services__group" appReveal [style.transition-delay]="'0.1s'">
+      <p class="services__group-label kicker">
+        <span class="services__group-dash" aria-hidden="true"></span>
+        {{ i18n.t().services.saleLabel }}
+      </p>
+      <div class="services__grid" role="list">
+        @for (item of i18n.t().services.items.slice(3); track item.n) {
+          <div class="services__card" role="listitem">
+            <span class="services__n mono">{{ item.n }}</span>
+            <h3 class="services__card-title display">{{ item.title }}</h3>
+            <p class="services__card-desc">{{ item.desc }}</p>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>

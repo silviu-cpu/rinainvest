@@ -1,0 +1,27 @@
+<section class="process section" id="process">
+  <div class="process__inner">
+    <div class="shell">
+      <div class="process__head" appReveal>
+        <p class="kicker">{{ i18n.t().process.kicker }}</p>
+        <h2 class="process__title display">
+          @for (line of i18n.t().process.title.split('\n'); track line) {
+            {{ line }}<br>
+          }
+        </h2>
+      </div>
+
+      <div class="process__rail" role="list">
+        @for (step of i18n.t().process.steps; track step.n; let i = $index) {
+          <div class="process__step" appReveal [style.transition-delay]="(i * 0.12) + 's'" role="listitem">
+            <div class="process__dot" aria-hidden="true">
+              <span class="process__dot-inner"></span>
+            </div>
+            <span class="process__step-n mono">{{ step.n }}</span>
+            <h3 class="process__step-title display">{{ step.title }}</h3>
+            <p class="process__step-desc">{{ step.desc }}</p>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>

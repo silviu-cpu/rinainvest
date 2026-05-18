@@ -1,0 +1,61 @@
+<section class="split section">
+  <div class="shell">
+    <!-- Section head -->
+    <div class="split__head" appReveal>
+      <div class="split__head-left">
+        <p class="kicker">{{ i18n.t().split.buy.kicker }} &amp; {{ i18n.t().split.rent.kicker }}</p>
+        <h2 class="split__title display">
+          @for (line of i18n.t().split.title.split('\n'); track line) {
+            {{ line }}<br>
+          }
+        </h2>
+      </div>
+      <div class="split__head-right">
+        <p class="split__sub">{{ i18n.t().split.sub }}</p>
+      </div>
+    </div>
+
+    <!-- Cards -->
+    <div class="split__grid">
+      <!-- Buy card -->
+      <div class="split__card" appReveal>
+        <span class="split__numeral display" aria-hidden="true">01</span>
+        <div class="split__card-content">
+          <p class="kicker">{{ i18n.t().split.buy.kicker }}</p>
+          <h3 class="split__card-title display">
+            @for (line of i18n.t().split.buy.title.split('\n'); track line) {
+              {{ line }}<br>
+            }
+          </h3>
+          <p class="split__card-body">{{ i18n.t().split.buy.body }}</p>
+          <ul class="split__bullets" role="list">
+            @for (bullet of i18n.t().split.buy.bullets; track bullet) {
+              <li>{{ bullet }}</li>
+            }
+          </ul>
+          <a href="#contact" class="split__cta">{{ i18n.t().split.buy.cta }} →</a>
+        </div>
+      </div>
+
+      <!-- Rent card -->
+      <div class="split__card" appReveal [style.transition-delay]="'0.15s'">
+        <span class="split__numeral display" aria-hidden="true">02</span>
+        <div class="split__card-content">
+          <p class="kicker">{{ i18n.t().split.rent.kicker }}</p>
+          <h3 class="split__card-title display">
+            @for (line of i18n.t().split.rent.title.split('\n'); track line) {
+              {{ line }}<br>
+            }
+          </h3>
+          <p class="split__card-body">{{ i18n.t().split.rent.body }}</p>
+          <ul class="split__bullets" role="list">
+            @for (bullet of i18n.t().split.rent.bullets; track bullet) {
+              <li>{{ bullet }}</li>
+            }
+          </ul>
+          <a href="#contact" class="split__cta">{{ i18n.t().split.rent.cta }} →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

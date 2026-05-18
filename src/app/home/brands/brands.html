@@ -1,0 +1,25 @@
+<section class="brands section" id="brands">
+  <div class="shell">
+    <div class="brands__head" appReveal>
+      <p class="kicker">{{ i18n.t().brands.kicker }}</p>
+      <h2 class="brands__title display">{{ i18n.t().brands.title }}</h2>
+    </div>
+
+    <div class="brands__strip" role="list">
+      @for (brand of i18n.t().brands.items; track brand.name; let i = $index) {
+        <div class="brands__cell" appReveal [style.transition-delay]="(i * 0.1) + 's'" role="listitem">
+          <div class="brands__info">
+            <p class="brands__name display">{{ brand.name }}</p>
+            <p class="brands__line mono">{{ brand.line }}</p>
+          </div>
+        </div>
+      }
+    </div>
+
+    <p class="brands__foot" appReveal>
+      <span class="brands__rule" aria-hidden="true"></span>
+      {{ i18n.t().brands.foot }}
+      <span class="brands__rule" aria-hidden="true"></span>
+    </p>
+  </div>
+</section>

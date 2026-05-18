@@ -1,0 +1,136 @@
+<section class="contact section" id="contact">
+  <div class="shell">
+    <div class="contact__head" appReveal>
+      <p class="kicker">{{ i18n.t().contact.kicker }}</p>
+      <h2 class="contact__title display">
+        @for (line of i18n.t().contact.title.split('\n'); track line) {
+          {{ line }}<br>
+        }
+      </h2>
+    </div>
+
+    <div class="contact__grid">
+      <!-- Left: direct contact -->
+      <div class="contact__info" appReveal>
+        <p class="kicker">{{ i18n.t().contact.directTitle }}</p>
+
+        <a class="contact__phone display" href="tel:+40740415462">
+          {{ i18n.t().contact.phone }}
+        </a>
+
+        <div class="contact__address">
+          @for (line of i18n.t().contact.address.split('\n'); track line) {
+            <span>{{ line }}</span>
+          }
+          <span class="contact__cui mono">{{ i18n.t().contact.cui }}</span>
+        </div>
+      </div>
+
+      <!-- Right: form -->
+      <div class="contact__form-wrap" appReveal [style.transition-delay]="'0.15s'">
+        @if (submitted()) {
+          <div class="contact__success">
+            <div class="contact__success-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+            <h3 class="display">{{ i18n.t().contact.submittedTitle }}</h3>
+            <p>{{ i18n.t().contact.submittedDesc }}</p>
+          </div>
+        } @else {
+          <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate class="contact__form">
+            <div class="form__row">
+              <div class="form__field" [class.has-error]="fieldError('name')">
+                <label for="f-name">{{ i18n.t().contact.fieldName }}</label>
+                <input id="f-name" type="text" formControlName="name" autocomplete="name">
+                @if (fieldError('name')) {
+                  <span class="form__error">Câmp obligatoriu (minim 2 caractere)</span>
+                }
+              </div>
+              <div class="form__field">
+                <label for="f-company">{{ i18n.t().contact.fieldCompany }}</label>
+                <input id="f-company" type="text" formControlName="company" autocomplete="organization">
+              </div>
+            </div>
+
+            <div class="form__row">
+              <div class="form__field" [class.has-error]="fieldError('email')">
+                <label for="f-email">{{ i18n.t().contact.fieldEmail }}</label>
+                <input id="f-email" type="email" formControlName="email" autocomplete="email">
+                @if (fieldError('email')) {
+                  <span class="form__error">Email invalid</span>
+                }
+              </div>
+              <div class="form__field" [class.has-error]="fieldError('phone')">
+                <label for="f-phone">{{ i18n.t().contact.fieldPhone }}</label>
+                <input id="f-phone" type="tel" formControlName="phone" autocomplete="tel">
+                @if (fieldError('phone')) {
+                  <span class="form__error">Câmp obligatoriu</span>
+                }
+              </div>
+            </div>
+
+            <div class="form__row">
+              <div class="form__field" [class.has-error]="fieldError('type')">
+                <label for="f-type">{{ i18n.t().contact.fieldType }}</label>
+                <select id="f-type" formControlName="type">
+                  <option value="" disabled>—</option>
+                  @for (opt of i18n.t().contact.typeOpts; track opt) {
+                    <option [value]="opt">{{ opt }}</option>
+                  }
+                </select>
+                @if (fieldError('type')) {
+                  <span class="form__error">Selectați o opțiune</span>
+                }
+              </div>
+              <div class="form__field" [class.has-error]="fieldError('vehicle')">
+                <label for="f-vehicle">{{ i18n.t().contact.fieldVehicle }}</label>
+                <select id="f-vehicle" formControlName="vehicle">
+                  <option value="" disabled>—</option>
+                  @for (opt of i18n.t().contact.vehicleOpts; track opt) {
+                    <option [value]="opt">{{ opt }}</option>
+                  }
+                </select>
+                @if (fieldError('vehicle')) {
+                  <span class="form__error">Selectați o opțiune</span>
+                }
+              </div>
+            </div>
+
+            <div class="form__field form__field--full">
+              <label for="f-message">{{ i18n.t().contact.fieldMessage }}</label>
+              <textarea id="f-message" formControlName="message" [placeholder]="i18n.t().contact.messagePh" rows="4"></textarea>
+            </div>
+
+            <div class="form__field form__field--full form__field--checkbox" [class.has-error]="fieldError('gdpr')">
+              <label class="form__checkbox-label">
+                <input type="checkbox" formControlName="gdpr">
+                <span>{{ i18n.t().contact.consent }}</span>
+              </label>
+            </div>
+
+            @if (submitError()) {
+              <p class="form__submit-error">{{ submitError() }}</p>
+            }
+
+            <button
+              type="submit"
+              class="btn-primary form__submit"
+              [disabled]="submitting()"
+            >
+              @if (submitting()) {
+                <span>Se trimite…</span>
+              } @else {
+                <span>{{ i18n.t().contact.submit }}</span>
+                <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+                </svg>
+              }
+            </button>
+          </form>
+        }
+      </div>
+    </div>
+  </div>
+</section>

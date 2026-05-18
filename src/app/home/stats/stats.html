@@ -1,0 +1,10 @@
+<section class="stats" aria-label="Cifre cheie">
+  <div class="stats__inner shell">
+    @for (stat of i18n.t().stats; track stat.value; let i = $index) {
+      <div class="stats__item" appReveal [style.transition-delay]="(i * 0.1) + 's'">
+        <span class="stats__value display">{{ stat.value }}</span>
+        <span class="stats__label mono">{{ stat.label }}</span>
+      </div>
+    }
+  </div>
+</section>

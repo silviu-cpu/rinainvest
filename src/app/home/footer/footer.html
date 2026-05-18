@@ -1,0 +1,34 @@
+<footer class="footer">
+  <div class="shell">
+    <div class="footer__top">
+      <!-- Col 1: Tagline + address -->
+      <div class="footer__col footer__col--brand">
+        <p class="footer__tagline display">
+          @for (line of i18n.t().footer.tagline.split('\n'); track line) {
+            {{ line }}<br>
+          }
+        </p>
+        <div class="footer__addr">
+          @for (line of i18n.t().footer.address.split('\n'); track line) {
+            <span>{{ line }}</span>
+          }
+          <span class="footer__cui mono">{{ i18n.t().footer.cui }}</span>
+        </div>
+      </div>
+
+      <!-- Col 2: Direct contact -->
+      <div class="footer__col">
+        <p class="footer__col-title mono">Contact</p>
+        <div class="footer__contact">
+          <a href="tel:+40740415462">{{ i18n.t().contact.phone }}</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span class="footer__brand display">RINAINVEST</span>
+      <span class="footer__copy">{{ i18n.t().footer.copy }}</span>
+      <span class="footer__skillview">made with ♥ by <a href="https://skillview.ro" target="_blank" rel="noopener">Skillview</a></span>
+    </div>
+  </div>
+</footer>
