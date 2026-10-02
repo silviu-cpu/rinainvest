@@ -43,7 +43,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-display);
   font-size: 14px;
   color: #060f1f;
   font-weight: 400;
@@ -52,7 +52,7 @@
 }
 
 .nav__name {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-display);
   font-size: 20px;
   font-weight: 400;
   color: var(--fg);
@@ -94,7 +94,7 @@
   border: none;
   cursor: pointer;
   padding: 4px 0;
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: var(--font-sans);
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.06em;
